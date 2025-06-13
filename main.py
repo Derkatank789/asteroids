@@ -43,10 +43,16 @@ def main():
         for aster in asteroid:
             if aster.collision(player) == True:
                 raise SystemExit("Game Over")
+            for s in shot:
+                if s.collision(aster):
+                    s.kill()
+                    aster.split()
+            
+
 
         for drawing in drawable:
             drawing.draw(screen)
-            
+
         pygame.display.flip()
         dt = (Clock.tick(60)) / 1000 # Frame Limiter
 #stops the program running unless started directly
